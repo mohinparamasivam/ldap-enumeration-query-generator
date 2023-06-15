@@ -369,32 +369,35 @@ function DisableEnableInput() {
 // to set the category nse option into the form select
 function CategoryNSE() {
   var options = [
-    { value: "auth", text: "auth" },
-    { value: "broadcast", text: "broadcast" },
-    { value: "brute", text: "brute" },
-    { value: "default", text: "default" },
-    { value: "discovery", text: "discovery" },
-    { value: "dos", text: "dos" },
-    { value: "exploit", text: "exploit" },
-    { value: "external", text: "external" },
-    { value: "fuzzer", text: "fuzzer" },
-    { value: "intrusive", text: "intrusive" },
-    { value: "malware", text: "malware" },
-    { value: "safe", text: "safe" },
-    { value: "version", text: "version" },
-    { value: "vuln", text: "vuln" },
-    { value: "specific", text: "specific" }
+    { value: "", text: "Please Select" },
+    { value: "Domain-Users", text: "Find all Domain Users" },
+    { value: "Domain-Admins", text: "Find all Domain Admins" },
+    { value: "Domain-Admins", text: "Find all Domain Groups" },
+    { value: "Domain-Admins", text: "Find Domain Groups ending with 'admin' keyword" },
+    { value: "Domain-Admins", text: "Find Domain Controllers" },
+    { value: "Domain-Admins", text: "Find Domain Computers" },
+    { value: "Domain-Admins", text: "Find Decoy HoneyPot Accounts" },
+    { value: "Domain-Admins", text: "Find Default User Accounts with password in Description" },
+    { value: "Domain-Admins", text: "Map Domain Trusts" },
+    { value: "Domain-Admins", text: "Find Principals with DCSync Rights" },
+    { value: "Domain-Admins", text: "List all Kerberoastable Accounts" },
+    { value: "Domain-Admins", text: "Find AS-REP Roastable Users (DontReqPreAuth)" },
+    { value: "Domain-Admins", text: "Find UnConstrained Delegration Enabled Workstations" },
+    { value: "Domain-Admins", text: "Find Constrained Delegration Enabled Workstations" },
+    { value: "Domain-Admins", text: "Find Workstations where Domain Users can RDP" },
+    { value: "Domain-Admins", text: "Find LAPS Enabled Workstations" }
   ];
-  var NSECategory = document.getElementById("PreBuilt-Mode");
+
+  var PreBuiltQuery = document.getElementById("PreBuilt-Mode");
 
   options.forEach(function (option) {
     var optionElement = document.createElement("option");
     optionElement.value = option.value;
     optionElement.text = option.text;
-    NSECategory.appendChild(optionElement);
+    PreBuiltQuery.appendChild(optionElement);
   });
 
-  NSECategory.value = "default";
+  PreBuiltQuery.value = "Please Select";
 
 }
 
