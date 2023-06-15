@@ -65,11 +65,94 @@
     <div class="body">
       <!-- Tab links -->
       <div class="tab">
-        <button class="tablinks" onclick="ChangeTab(event, 'Simple')" id="SimpleOpen"> Simple </button>
+        <button class="tablinks" onclick="ChangeTab(event, 'PreBuiltQuery')" id="PreBuiltOpen"> Pre-Built Queries </button>
         <button class="tablinks" onclick="ChangeTab(event, 'Advance')"> Advance </button>
         <button class="tablinks" onclick="ChangeTab(event, 'NSE')"> Nmap Scripting Engine </button>
       </div>
       <!--Tab links end -->
+
+      <!-- PreBuiltQuery Mode -->
+      <div id="PreBuiltQuery" class="tabcontent">
+        <h3>Pre-Built Mode</h3>
+        <div class="center">
+          <div class="text-start">
+            <div class="form-floating">
+              <select class="form-select" id="PreBuilt-Mode">
+              </select>
+              <label for="Pre-Built Queries">Pre-Built Queries</label>
+            </div>
+
+           
+          <br><br>
+
+          <!-- ADSearch Command -->
+          <div class="input-group">
+            <span class="input-group-text">ADSearch :</span>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="NSE-Nmap" readonly />
+              <label for="NSE-Nmap">ADSearch Command</label>
+
+            </div>
+            <div class="comment">
+              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="NSE-Nmap">
+                <span class="commenttext">Copy to clipboard</span> Copy text </button>
+            </div>
+          </div>
+          <!-- ADSearch Command end -->
+
+          <br><br>
+
+           <!-- LDAPSearch Command -->
+          <div class="input-group">
+            <span class="input-group-text">LDAPSearch :</span>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="NSE-Nmap" readonly />
+              <label for="NSE-Nmap">LDAPSearch Command</label>
+
+            </div>
+            <div class="comment">
+              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="NSE-Nmap">
+                <span class="commenttext">Copy to clipboard</span> Copy text </button>
+            </div>
+          </div>
+          <!-- LDAPSearch Command end -->
+
+           <br><br>
+
+           <!-- Raw Command -->
+          <div class="input-group">
+            <span class="input-group-text">Raw LDAP Query :</span>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="NSE-Nmap" readonly />
+              <label for="NSE-Nmap">Raw Query</label>
+
+            </div>
+            <div class="comment">
+              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="NSE-Nmap">
+                <span class="commenttext">Copy to clipboard</span> Copy text </button>
+            </div>
+          </div>
+          <!-- Raw Command end -->
+           <br><br>
+
+
+        </div>
+      </div>
+      <!-- PreBuiltQuery Mode end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <!-- Simple Mode -->
       <div id="Simple" class="tabcontent">
         <h3>Simple Mode</h3>
@@ -354,71 +437,7 @@
       </div>
 
       <!-- Advance Mode end -->
-      <!-- NSE Mode -->
-      <div id="NSE" class="tabcontent">
-        <h3>Nmap Scripting Engine Mode</h3>
-        <div class="center">
-          <div class="text-start">
-            <div class="form-floating">
-              <select class="form-select" id="NSE-Category">
-              </select>
-              <label for="NSE-Category">NSE Category</label>
-            </div>
-
-            <div class="form-floating">
-              <select class="form-select" id="NSE-Specific">
-              </select>
-              <label for="NSE-Specific">NSE Specific</label>
-            </div>
-
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="NSE-Port" />
-              <label class="form-check-label" for="NSE-Port">Specific Port</label>
-            </div>
-            <input class="form-control " id="NSE-Port-Number" type="text" />
-            <div class="explanation"> * Multiple port example: 22,80 <br /> * Range example: 1-1000 </div>
-
-          </div>
-          <div class="summary">
-            <table class="table table-hover">
-              <tr>
-                <th colspan="2">
-                  <h3 id="NSE-Header"></h3>
-                </th>
-              </tr>
-              <tr>
-                <th>Link to refer: </th>
-                <td>
-                  <p id="NSE-Link"></p>
-                </td>
-              </tr>
-              <tr>
-                <th>Summary: </th>
-                <td>
-                  <p id="NSE-Summary"></p>
-                </td>
-              </tr>
-            </table>
-          </div>
-          <!-- NSE Command -->
-          <div class="input-group">
-            <span class="input-group-text">Result:</span>
-            <div class="form-floating">
-              <input type="text" class="form-control" id="NSE-Nmap" readonly />
-              <label for="NSE-Nmap">Nmap Command</label>
-
-            </div>
-            <div class="comment">
-              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="NSE-Nmap">
-                <span class="commenttext">Copy to clipboard</span> Copy text </button>
-            </div>
-          </div>
-          <!-- NSE Command end -->
-
-
-        </div>
-      </div>
-      <!-- NSE Mode end -->
+      
     </div>
     <!-- body end -->
     <!-- footer -->

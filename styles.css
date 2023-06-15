@@ -160,6 +160,9 @@ html {
 
 .input-group-text {
   color: inherit !important;
+  display: flex;
+  justify-content: center;
+  width: 15%;
 }
 
 #NSE-Port-Number {
