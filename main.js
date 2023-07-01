@@ -97,7 +97,7 @@ function SetLDAP() {
     ldap_query_ldapsearch = "(&(objectClass=group)(cn=*admin))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
-    var RAW_Command = ldap_query;
+    var RAW_Command = ldap_query_adsearch;
 
     document.getElementById("ADSearch_Command").value = ADSearch_Command;
     document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
@@ -250,11 +250,11 @@ function SetLDAP() {
 
 
   else if (PreBuiltMode.value === "Find Interesting ACL") {
-    ldap_query_adsearch = "(&(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\d{3,}$)))";
-    ldap_query_ldapsearch = "(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\d{3,}$))";
+    ldap_query_adsearch = "(&(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$)))";
+    ldap_query_ldapsearch = "(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
-    var RAW_Command = ldap_query;
+    var RAW_Command = ldap_query_adsearch;
 
     document.getElementById("ADSearch_Command").value = ADSearch_Command;
     document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
@@ -265,8 +265,8 @@ function SetLDAP() {
 
   else if (PreBuiltMode.value === "Find Workstations where Domain Users can RDP") {
     ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=4096))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
     var RAW_Command = ldap_query;
 
     document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -278,8 +278,8 @@ function SetLDAP() {
 
   else if (PreBuiltMode.value === "Find LAPS Enabled Workstations") {
     ldap_query = "(&(objectCategory=computer)(ms-Mcs-AdmPwdExpirationTime=*))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
     var RAW_Command = ldap_query;
 
     document.getElementById("ADSearch_Command").value = ADSearch_Command;
