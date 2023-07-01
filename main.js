@@ -53,10 +53,11 @@ function SetLDAP() {
   if (domain_array.length===3){
 
     //Find All Domain Users
-  if (PreBuiltMode.value === "(&(objectCategory=user)(objectClass=user))") {
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+PreBuiltMode.value+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+PreBuiltMode.value+"\"";
-    var RAW_Command = PreBuiltMode.value;
+  if (PreBuiltMode.value === "Find all Domain Users") {
+    ldap_query = "(&(objectCategory=user)(objectClass=user))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
 
     document.getElementById("ADSearch_Command").value = ADSearch_Command;
     document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
@@ -65,18 +66,119 @@ function SetLDAP() {
 
   }
 
-  else if (PreBuiltMode.value === "mohin") {
-    var ADSearch_Command = "nmap hello"; 
-    document.getElementById("NSE-Nmap1").value = ADSearch_Command;
-  }
+  else if (PreBuiltMode.value === "Find all Domain Admins") {
+    ldap_query = "(&(objectClass=user)(objectCategory=person)(memberOf=CN=Domain Admins,CN=Users,DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
 
   }
+
+
+  else if (PreBuiltMode.value === "Find all Domain Groups") {
+    ldap_query = "(&(objectClass=group)(objectCategory=group))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+  }
+
+
+  else if (PreBuiltMode.value === "Find Domain Groups ending with 'admin' keyword") {
+    ldap_query = "(&(objectClass=group)(objectCategory=group)(name=*admin))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+  }
+
+
+  else if (PreBuiltMode.value === "Find Domain Users with password never expires enabled") {
+    ldap_query = "(&(objectClass=user)(objectCategory=person)(userAccountControl:1.2.840.113556.1.4.803:=65536))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+  }
+
+
+  else if (PreBuiltMode.value === "Find Domain Controllers") {
+    ldap_query = "(&(objectClass=computer)(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+  }
+
+
+  else if (PreBuiltMode.value === "Find Domain Computers") {
+    ldap_query = "(&(objectClass=computer)(objectCategory=computer))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+  }
+
+
+  else if (PreBuiltMode.value === "Find Decoy HoneyPot Accounts") {
+    ldap_query = "(&(objectClass=user)(objectCategory=person)(logonCount=0)(badPwdCount=0))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+//EDIT DOMAIN SPLIT 2 PARTS LATER!!!!
+
 
   // IF Statement if domain has 2 parts
 
   else if (domain_array.length===2){
     //Find All Domain Users
-  if (PreBuiltMode.value === "(&(objectCategory=user)(objectClass=user))") {
+  if (PreBuiltMode.value === "Find all Domain Users") {
+    ldap_query = "(&(objectCategory=user)(objectClass=user))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+PreBuiltMode.value+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+PreBuiltMode.value+"\"";
     var RAW_Command = PreBuiltMode.value;
@@ -84,14 +186,18 @@ function SetLDAP() {
     document.getElementById("ADSearch_Command").value = ADSearch_Command;
     document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
     document.getElementById("RAW_Command").value = RAW_Command;
-
-
   }
 
-  else if (PreBuiltMode.value === "mohin") {
-    var ADSearch_Command = "nmap hello"; 
-    document.getElementById("NSE-Nmap1").value = ADSearch_Command;
-  }
+  
+
+*/
+
+
+
+
+
+
+
 
   }
 
@@ -175,27 +281,35 @@ function DisableEnableInput() {
 // to set the category nse option into the form select
 function CategoryNSE() {
 
-  var domain_part1 = document.getElementById("Domain");
+  var domain = document.getElementById("Domain").value; 
+  //Break Domain into  parts 
+  var domain_array = domain.split(".");
+  var domain_part1 = domain_array[0];
+  var domain_part2 = domain_array[1];
+  var domain_part3 = domain_array[2];
+
+
+
   var options = [
     { value: "", text: "Please Select" },
     { value: "mohin", text: "mohin" },
-    { value: "(&(objectCategory=user)(objectClass=user))", text: "Find all Domain Users" },
-    { value: "(&(objectCategory=user)(objectClass=user)(memberOf=CN=Domain Admins,CN=Users,DC="+domain_part1+",DC="+domain_part1+"))", text: "Find all Domain Admins" },
-    { value: "Domain-Admins", text: "Find all Domain Groups" },
-    { value: "Domain-Admins", text: "Find Domain Groups ending with 'admin' keyword" },
-    { value: "Domain-Users", text: "Find Domain Users with password never expires enabled" },
-    { value: "Domain-Admins", text: "Find Domain Controllers" },
-    { value: "Domain-Admins", text: "Find Domain Computers" },
-    { value: "Domain-Admins", text: "Find Decoy HoneyPot Accounts" },
-    { value: "Domain-Admins", text: "Find Default User Accounts with password in Description" },
-    { value: "Domain-Admins", text: "Map Domain Trusts" },
-    { value: "Domain-Admins", text: "Find Principals with DCSync Rights" },
-    { value: "Domain-Admins", text: "List all Kerberoastable Accounts" },
-    { value: "Domain-Admins", text: "Find AS-REP Roastable Users (DontReqPreAuth)" },
-    { value: "Domain-Admins", text: "Find UnConstrained Delegration Enabled Workstations" },
-    { value: "Domain-Admins", text: "Find Constrained Delegration Enabled Workstations" },
-    { value: "Domain-Admins", text: "Find Workstations where Domain Users can RDP" },
-    { value: "Domain-Admins", text: "Find LAPS Enabled Workstations" }
+    { value: "Find all Domain Users", text: "Find all Domain Users" },
+    { value: "Find all Domain Admins", text: "Find all Domain Admins" },
+    { value: "Find all Domain Groups", text: "Find all Domain Groups" },
+    { value: "Find Domain Groups ending with 'admin' keyword", text: "Find Domain Groups ending with 'admin' keyword" },
+    { value: "Find Domain Users with password never expires enabled", text: "Find Domain Users with password never expires enabled" },
+    { value: "Find Domain Controllers", text: "Find Domain Controllers" },
+    { value: "Find Domain Computers", text: "Find Domain Computers" },
+    { value: "Find Decoy HoneyPot Accounts", text: "Find Decoy HoneyPot Accounts" },
+    { value: "Find Default User Accounts with password in Description", text: "Find Default User Accounts with password in Description" },
+    { value: "Map Domain Trusts", text: "Map Domain Trusts" },
+    { value: "Find Principals with DCSync Rights", text: "Find Principals with DCSync Rights" },
+    { value: "List all Kerberoastable Accounts", text: "List all Kerberoastable Accounts" },
+    { value: "Find AS-REP Roastable Users (DontReqPreAuth)", text: "Find AS-REP Roastable Users (DontReqPreAuth)" },
+    { value: "Find UnConstrained Delegration Enabled Workstations", text: "Find UnConstrained Delegration Enabled Workstations" },
+    { value: "Find Constrained Delegration Enabled Workstations", text: "Find Constrained Delegration Enabled Workstations" },
+    { value: "Find Workstations where Domain Users can RDP", text: "Find Workstations where Domain Users can RDP" },
+    { value: "Find LAPS Enabled Workstations", text: "Find LAPS Enabled Workstations" }
   ];
 
 
