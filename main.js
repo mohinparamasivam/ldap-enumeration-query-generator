@@ -93,9 +93,10 @@ function SetLDAP() {
 
 
   else if (PreBuiltMode.value === "Find Domain Groups ending with 'admin' keyword") {
-    ldap_query = "(&(objectClass=group)(objectCategory=group)(name=*admin))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    ldap_query_adsearch = "(&(objectClass=group)(objectCategory=group)(name=*admin))";
+    ldap_query_ldapsearch = "(&(objectClass=group)(cn=*admin))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
     var RAW_Command = ldap_query;
 
     document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -171,7 +172,7 @@ function SetLDAP() {
 
 
   else if (PreBuiltMode.value === "Map Domain Trusts") {
-    ldap_query = "(&(objectClass=trustedDomain))";
+    ldap_query = "(&(objectClass=trustedDomain)(objectCategory=trustedDomain))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
     var RAW_Command = ldap_query;
@@ -184,7 +185,7 @@ function SetLDAP() {
 
 
   else if (PreBuiltMode.value === "Find Principals with DCSync Rights") {
-    ldap_query = "(&(objectClass=domainDNS)(msDS-AllowedToDelegateTo=*))";
+    ldap_query = "(&(objectClass=user)(objectCategory=person)(msDS-AllowedToActOnBehalfOfOtherIdentity=*))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
     var RAW_Command = ldap_query;
@@ -197,7 +198,7 @@ function SetLDAP() {
 
 
   else if (PreBuiltMode.value === "List all Kerberoastable Accounts") {
-    ldap_query = "(&(objectCategory=user)(servicePrincipalName=*)(userAccountControl:1.2.840.113556.1.4.803:=4194304))";
+    ldap_query = "(&(objectCategory=user)(servicePrincipalName=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
     var RAW_Command = ldap_query;
@@ -210,6 +211,19 @@ function SetLDAP() {
 
 
   else if (PreBuiltMode.value === "Find AS-REP Roastable Accounts (DontReqPreAuth)") {
+    ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))";
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+    var RAW_Command = ldap_query;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+  }
+
+
+  else if (PreBuiltMode.value === "Find UnConstrained Delegation Enabled Workstations") {
     ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304)(userAccountControl:1.2.840.113556.1.4.803:=524288))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
@@ -222,20 +236,7 @@ function SetLDAP() {
   }
 
 
-  else if (PreBuiltMode.value === "Find UnConstrained Delegration Enabled Workstations") {
-    ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304)(userAccountControl:1.2.840.113556.1.4.803:=524288))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Constrained Delegration Enabled Workstations") {
+  else if (PreBuiltMode.value === "Find Constrained Delegation Enabled Workstations") {
     ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=524288)";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
@@ -263,7 +264,7 @@ function SetLDAP() {
 
 
   else if (PreBuiltMode.value === "Find Workstations where Domain Users can RDP") {
-    ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=4096)(msTSAllowLogon=TRUE))";
+    ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=4096))";
     var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
     var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
     var RAW_Command = ldap_query;
@@ -437,8 +438,8 @@ function CategoryNSE() {
     { value: "Find Principals with DCSync Rights", text: "Find Principals with DCSync Rights" },
     { value: "List all Kerberoastable Accounts", text: "List all Kerberoastable Accounts" },
     { value: "Find AS-REP Roastable Accounts (DontReqPreAuth)", text: "Find AS-REP Roastable Accounts (DontReqPreAuth)" },
-    { value: "Find UnConstrained Delegration Enabled Workstations", text: "Find UnConstrained Delegration Enabled Workstations" },
-    { value: "Find Constrained Delegration Enabled Workstations", text: "Find Constrained Delegration Enabled Workstations" },
+    { value: "Find UnConstrained Delegation Enabled Workstations", text: "Find UnConstrained Delegation Enabled Workstations" },
+    { value: "Find Constrained Delegation Enabled Workstations", text: "Find Constrained Delegation Enabled Workstations" },
     { value: "Find Interesting ACL", text: "Find Interesting ACL" },
     { value: "Find Workstations where Domain Users can RDP", text: "Find Workstations where Domain Users can RDP" },
     { value: "Find LAPS Enabled Workstations", text: "Find LAPS Enabled Workstations" }
