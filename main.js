@@ -21,17 +21,90 @@ function SetLDAP() {
   // Variable Declaration
   // IP address
   var ip = document.getElementById("LDAP_IP").value;
-  var domain_part1 = document.getElementById("Domain").value;
+  var port = document.getElementById("LDAP_PORT").value;
+  var domain = document.getElementById("Domain").value; //use this for ADSearch
 
+
+  //Break Domain into  parts for LDAPSearch.
+  var domain_array = domain.split(".")
+
+ //Find length of array if subdomain involved. Need 3 parts
+
+ if (domain_array.length===3){
+  var domain_part1 = domain_array[0];
+  var domain_part2 = domain_array[1];
+  var domain_part3 = domain_array[2];
+ }
+
+ else if (domain_array.length===2){
+  var domain_part1 = domain_array[0];
+  var domain_part2 = domain_array[1];
+ }
+ 
   // PreBuilt-Query Mode
   var PreBuiltMode = document.getElementById("PreBuilt-Mode");
 
   alert(PreBuiltMode.value);
+  //Set the ADSearch , LDAPSearch and Raw LDAP Query Value
 
-  if (PreBuiltMode.value === "mohin") {
-    var ADSearch_Command = "nmap hello"; // Updated variable name
+
+  // IF Statement if domain has 3 parts
+
+  if (domain_array.length===3){
+
+    //Find All Domain Users
+  if (PreBuiltMode.value === "(&(objectCategory=user)(objectClass=user))") {
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+PreBuiltMode.value+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+PreBuiltMode.value+"\"";
+    var RAW_Command = PreBuiltMode.value;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+
+  }
+
+  else if (PreBuiltMode.value === "mohin") {
+    var ADSearch_Command = "nmap hello"; 
     document.getElementById("NSE-Nmap1").value = ADSearch_Command;
   }
+
+  }
+
+  // IF Statement if domain has 2 parts
+
+  else if (domain_array.length===2){
+    //Find All Domain Users
+  if (PreBuiltMode.value === "(&(objectCategory=user)(objectClass=user))") {
+    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+PreBuiltMode.value+"\"";
+    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+PreBuiltMode.value+"\"";
+    var RAW_Command = PreBuiltMode.value;
+
+    document.getElementById("ADSearch_Command").value = ADSearch_Command;
+    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+    document.getElementById("RAW_Command").value = RAW_Command;
+
+
+  }
+
+  else if (PreBuiltMode.value === "mohin") {
+    var ADSearch_Command = "nmap hello"; 
+    document.getElementById("NSE-Nmap1").value = ADSearch_Command;
+  }
+
+  }
+
+
+
+  
+
+
+
+
+
+
+
 }
 
 
