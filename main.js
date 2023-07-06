@@ -53,296 +53,445 @@ function SetLDAP() {
   if (domain_array.length===3){
 
     //Find All Domain Users
-  if (PreBuiltMode.value === "Find all Domain Users") {
-    ldap_query = "(&(objectCategory=user)(objectClass=user))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
+    if (PreBuiltMode.value === "Find all Domain Users") {
+      ldap_query = "(&(objectCategory=user)(objectClass=user))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
 
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+    else if (PreBuiltMode.value === "Find all Domain Admins") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(memberOf=CN=Domain Admins,CN=Users,DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
 
 
+    else if (PreBuiltMode.value === "Find all Domain Groups") {
+      ldap_query = "(&(objectClass=group)(objectCategory=group))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Groups ending with 'admin' keyword") {
+      ldap_query_adsearch = "(&(objectClass=group)(objectCategory=group)(name=*admin))";
+      ldap_query_ldapsearch = "(&(objectClass=group)(cn=*admin))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+      var RAW_Command = ldap_query_adsearch;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Users with password never expires enabled") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(userAccountControl:1.2.840.113556.1.4.803:=65536))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Controllers") {
+      ldap_query = "(&(objectClass=computer)(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Computers") {
+      ldap_query = "(&(objectClass=computer)(objectCategory=computer))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Decoy HoneyPot Accounts") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(logonCount=0)(badPwdCount=0))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Default User Accounts with password in Description") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(description=*password*))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Map Domain Trusts") {
+      ldap_query = "(&(objectClass=trustedDomain)(objectCategory=trustedDomain))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Principals with DCSync Rights") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(msDS-AllowedToActOnBehalfOfOtherIdentity=*))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "List all Kerberoastable Accounts") {
+      ldap_query = "(&(objectCategory=user)(servicePrincipalName=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find AS-REP Roastable Accounts (DontReqPreAuth)") {
+      ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find UnConstrained Delegation Enabled Workstations") {
+      ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304)(userAccountControl:1.2.840.113556.1.4.803:=524288))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Constrained Delegation Enabled Workstations") {
+      ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=524288)";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Interesting ACL") {
+      ldap_query_adsearch = "(&(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$)))";
+      ldap_query_ldapsearch = "(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+      var RAW_Command = ldap_query_adsearch;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Workstations where Domain Users can RDP") {
+      ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=4096))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find LAPS Enabled Workstations") {
+      ldap_query = "(&(objectCategory=computer)(ms-Mcs-AdmPwdExpirationTime=*))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
   }
-
-  else if (PreBuiltMode.value === "Find all Domain Admins") {
-    ldap_query = "(&(objectClass=user)(objectCategory=person)(memberOf=CN=Domain Admins,CN=Users,DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find all Domain Groups") {
-    ldap_query = "(&(objectClass=group)(objectCategory=group))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Domain Groups ending with 'admin' keyword") {
-    ldap_query_adsearch = "(&(objectClass=group)(objectCategory=group)(name=*admin))";
-    ldap_query_ldapsearch = "(&(objectClass=group)(cn=*admin))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
-    var RAW_Command = ldap_query_adsearch;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Domain Users with password never expires enabled") {
-    ldap_query = "(&(objectClass=user)(objectCategory=person)(userAccountControl:1.2.840.113556.1.4.803:=65536))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Domain Controllers") {
-    ldap_query = "(&(objectClass=computer)(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Domain Computers") {
-    ldap_query = "(&(objectClass=computer)(objectCategory=computer))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Decoy HoneyPot Accounts") {
-    ldap_query = "(&(objectClass=user)(objectCategory=person)(logonCount=0)(badPwdCount=0))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Default User Accounts with password in Description") {
-    ldap_query = "(&(objectClass=user)(objectCategory=person)(description=*password*))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Map Domain Trusts") {
-    ldap_query = "(&(objectClass=trustedDomain)(objectCategory=trustedDomain))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Principals with DCSync Rights") {
-    ldap_query = "(&(objectClass=user)(objectCategory=person)(msDS-AllowedToActOnBehalfOfOtherIdentity=*))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "List all Kerberoastable Accounts") {
-    ldap_query = "(&(objectCategory=user)(servicePrincipalName=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find AS-REP Roastable Accounts (DontReqPreAuth)") {
-    ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find UnConstrained Delegation Enabled Workstations") {
-    ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304)(userAccountControl:1.2.840.113556.1.4.803:=524288))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Constrained Delegation Enabled Workstations") {
-    ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=524288)";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Interesting ACL") {
-    ldap_query_adsearch = "(&(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$)))";
-    ldap_query_ldapsearch = "(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
-    var RAW_Command = ldap_query_adsearch;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find Workstations where Domain Users can RDP") {
-    ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=4096))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-  else if (PreBuiltMode.value === "Find LAPS Enabled Workstations") {
-    ldap_query = "(&(objectCategory=computer)(ms-Mcs-AdmPwdExpirationTime=*))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
-    var RAW_Command = ldap_query;
-
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
-
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-//EDIT DOMAIN SPLIT 2 PARTS LATER!!!!
 
 
   // IF Statement if domain has 2 parts
 
   else if (domain_array.length===2){
+
     //Find All Domain Users
-  if (PreBuiltMode.value === "Find all Domain Users") {
-    ldap_query = "(&(objectCategory=user)(objectClass=user))";
-    var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+PreBuiltMode.value+"\"";
-    var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+PreBuiltMode.value+"\"";
-    var RAW_Command = PreBuiltMode.value;
+    if (PreBuiltMode.value === "Find all Domain Users") {
+      ldap_query = "(&(objectCategory=user)(objectClass=user))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
 
-    document.getElementById("ADSearch_Command").value = ADSearch_Command;
-    document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
-    document.getElementById("RAW_Command").value = RAW_Command;
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+    else if (PreBuiltMode.value === "Find all Domain Admins") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(memberOf=CN=Domain Admins,CN=Users,DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find all Domain Groups") {
+      ldap_query = "(&(objectClass=group)(objectCategory=group))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Groups ending with 'admin' keyword") {
+      ldap_query_adsearch = "(&(objectClass=group)(objectCategory=group)(name=*admin))";
+      ldap_query_ldapsearch = "(&(objectClass=group)(cn=*admin))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+      var RAW_Command = ldap_query_adsearch;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Users with password never expires enabled") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(userAccountControl:1.2.840.113556.1.4.803:=65536))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Controllers") {
+      ldap_query = "(&(objectClass=computer)(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Domain Computers") {
+      ldap_query = "(&(objectClass=computer)(objectCategory=computer))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Decoy HoneyPot Accounts") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(logonCount=0)(badPwdCount=0))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Default User Accounts with password in Description") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(description=*password*))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Map Domain Trusts") {
+      ldap_query = "(&(objectClass=trustedDomain)(objectCategory=trustedDomain))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Principals with DCSync Rights") {
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(msDS-AllowedToActOnBehalfOfOtherIdentity=*))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "List all Kerberoastable Accounts") {
+      ldap_query = "(&(objectCategory=user)(servicePrincipalName=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find AS-REP Roastable Accounts (DontReqPreAuth)") {
+      ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find UnConstrained Delegation Enabled Workstations") {
+      ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304)(userAccountControl:1.2.840.113556.1.4.803:=524288))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Constrained Delegation Enabled Workstations") {
+      ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=524288)";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Interesting ACL") {
+      ldap_query_adsearch = "(&(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$)))";
+      ldap_query_ldapsearch = "(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+      var RAW_Command = ldap_query_adsearch;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find Workstations where Domain Users can RDP") {
+      ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=4096))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
+
+
+    else if (PreBuiltMode.value === "Find LAPS Enabled Workstations") {
+      ldap_query = "(&(objectCategory=computer)(ms-Mcs-AdmPwdExpirationTime=*))";
+      var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var RAW_Command = ldap_query;
+
+      document.getElementById("ADSearch_Command").value = ADSearch_Command;
+      document.getElementById("LDAPSearch_Command").value = LDAPSearch_Command;
+      document.getElementById("RAW_Command").value = RAW_Command;
+    }
   }
-
-  
-
-*/
-
-
-
-
-
-
-
-
-  }
-
-
-
-  
-
-
-
-
-
-
-
 }
 
 
@@ -411,7 +560,7 @@ function DisableEnableInput() {
 }
 
 // to set the category nse option into the form select
-function CategoryNSE() {
+function BuiltInQueries() {
 
   var domain = document.getElementById("Domain").value; 
   //Break Domain into  parts 
@@ -521,7 +670,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //onload function
-  CategoryNSE();
+  BuiltInQueries();
   NSEDefinition();
   SwitchColorMode();
 
