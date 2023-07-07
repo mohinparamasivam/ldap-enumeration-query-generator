@@ -76,7 +76,7 @@
       <!-- Tab links -->
       <div class="tab">
         <button class="tablinks" onclick="ChangeTab(event, 'PreBuiltQuery')" id="PreBuiltOpen"> Pre-Built Queries </button>
-        <button class="tablinks" onclick="ChangeTab(event, 'Advance')"> Advance </button>
+        <button class="tablinks" onclick="ChangeTab(event, 'Custom')"> Custom Query Builder </button>
         <button class="tablinks" onclick="ChangeTab(event, 'NSE')"> Nmap Scripting Engine </button>
       </div>
       <!--Tab links end -->
@@ -148,307 +148,130 @@
 
         </div>
       </div>
+      </div>
       <!-- PreBuiltQuery Mode end -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- Simple Mode -->
-      <div id="Simple" class="tabcontent">
-        <h3>Simple Mode</h3>
-        <div class="center">
-          <!-- basic scan -->
-          <div class="input-group">
-            <span class="input-group-text">Result:</span>
-            <div class="form-floating">
-              <input type="text" class="form-control-plaintext" id="Basic-Scan" readonly />
-              <label for="Basic-Scan">Basic Scan</label>
-            </div>
-            <div class="comment">
-              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="Basic-Scan">
-                <span class="commenttext">Copy to clipboard</span> Copy text </button>
-            </div>
-          </div>
-          <div class="explanation">Nmap scan for top 1000 common ports</div>
-          <!-- basic scan end -->
-          <!-- full port scan -->
-          <div class="input-group">
-            <span class="input-group-text">Result:</span>
-            <div class="form-floating">
-              <input type="text" class="form-control-plaintext" id="Full-Port-Scan" readonly />
-              <label for="Full-Port-Scan">Full Port Scan</label>
-            </div>
-            <div class="comment">
-              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="Full-Port-Scan">
-                <span class="commenttext">Copy to clipboard</span> Copy text </button>
-            </div>
-          </div>
-          <div class="explanation">Nmap scan for all ports</div>
-          <!-- full port scan end -->
-          <!-- default script scan -->
-          <div class="input-group">
-            <span class="input-group-text">Result:</span>
-            <div class="form-floating">
-              <input type="text" class="form-control-plaintext" id="Default-Script-Scan" readonly />
-              <label for="Default-Script-Scan">Default Script Scan</label>
-            </div>
-            <div class="comment">
-              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="Default-Script-Scan">
-                <span class="commenttext">Copy to clipboard</span> Copy text </button>
-            </div>
-          </div>
-          <div class="explanation"> Nmap scan for top 1000 common ports with default Nmap script </div>
-          <!-- default script scan end -->
-          <!-- full scan -->
-          <div class="input-group">
-            <span class="input-group-text">Result:</span>
-            <div class="form-floating">
-              <input type="text" class="form-control-plaintext" id="Full-Scan" readonly />
-              <label for="Full-Scan">Full Scan</label>
-            </div>
-            <div class="comment">
-              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="Full-Scan">
-                <span class="commenttext">Copy to clipboard</span> Copy text </button>
-            </div>
-          </div>
-          <div class="explanation"> Nmap scan for all ports with OS detection, default Nmap script, version detection
-            and traceroute </div>
-          <!-- full scan end -->
-          <!-- scan save output -->
-          <div class="input-group">
-            <span class="input-group-text">Result:</span>
-            <div class="form-floating">
-              <input type="text" class="form-control-plaintext" id="Scan-Save-Output" readonly />
-              <label for="Scan-Save-Output">Basic Scan with output</label>
-            </div>
-            <div class="comment">
-              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="Scan-Save-Output">
-                <span class="commenttext">Copy to clipboard</span> Copy text </button>
-            </div>
-          </div>
-          <div class="explanation"> Nmap scan for top 1000 common ports and save into output.nmap </div>
-          <!-- scan save output end -->
-        </div>
-      </div>
-      <!-- Simple Mode end -->
-      <!-- Advance Mode -->
-      <div id="Advance" class="tabcontent">
-        <h3>Advance Mode</h3>
+      <!-- Custom Query Builder -->
+      <div id="Custom" class="tabcontent">
+        <h3>Custom Query Builder</h3>
         <div class="center">
           <div class="container text-start">
             <div class="row">
-              <!-- Host Discovery -->
+              <!-- Object Class -->
               <div class="col">
-                <h4>Host Discovery</h4>
+                <h4>Object Class</h4>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-sL" />
-                  <label class="form-check-label" for="Nmap-sL">List Scan</label>
+                  <input class="form-check-input" type="checkbox" role="switch" id="top" />
+                  <label class="form-check-label" for="top">top</label>
                 </div>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-sn" />
-                  <label class="form-check-label" for="Nmap-sn">Disable Port Scan</label>
+                  <input class="form-check-input" type="checkbox" role="switch" id="container" />
+                  <label class="form-check-label" for="container">container</label>
                 </div>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-Pn" />
-                  <label class="form-check-label" for="Nmap-Pn">Treat hosts as online</label>
+                  <input class="form-check-input" type="checkbox" role="switch" id="organizationalUnit" />
+                  <label class="form-check-label" for="organizationalUnit">organizationalUnit</label>
+                </div>
+                 <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="domain" />
+                  <label class="form-check-label" for="domain">domain</label>
+                </div>
+                 <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="computer" />
+                  <label class="form-check-label" for="computer">computer</label>
                 </div>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-traceroute" />
-                  <label class="form-check-label" for="Nmap-traceroute">trace route</label>
+                  <input class="form-check-input" type="checkbox" role="switch" id="person" />
+                  <label class="form-check-label" for="person">person</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="organizationalPerson" />
+                  <label class="form-check-label" for="organizationalPerson">organizationalPerson</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="user" />
+                  <label class="form-check-label" for="user">user</label>
+                </div>
+                <div class="form-check form-switch">
+                  <input class="form-check-input" type="checkbox" role="switch" id="group" />
+                  <label class="form-check-label" for="group">group</label>
                 </div>
               </div>
-              <!-- Host Discovery end -->
-              <!-- Scan Technique -->
-              <div class="col">
-                <h4>Scan Technique</h4>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Scan" id="Nmap-sS" checked />
-                  <label class="form-check-label" for="Nmap-sS">Secure Scan (Default)</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Scan" id="Nmap-sT" />
-                  <label class="form-check-label" for="Nmap-sT">Full TCP Scan</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Scan" id="Nmap-sW" />
-                  <label class="form-check-label" for="Nmap-sW">Windows Scan</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Scan" id="Nmap-sN" />
-                  <label class="form-check-label" for="Nmap-sN">TCP Null Scan</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Scan" id="Nmap-sF" />
-                  <label class="form-check-label" for="Nmap-sF">FIN Scan</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Scan" id="Nmap-sX" />
-                  <label class="form-check-label" for="Nmap-sX">Xmas Scan</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Scan" id="Nmap-sO" />
-                  <label class="form-check-label" for="Nmap-sO">IP protocol Scan</label>
-                </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-sU" />
-                  <label class="form-check-label" for="Nmap-sU">UDP Scan</label>
-                </div>
-              </div>
-              <!-- Scan Techinque end -->
-              <!-- Misc -->
-              <div class="col">
-                <h4>Misc</h4>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-sV" />
-                  <label class="form-check-label" for="Nmap-sV">service detection</label>
-                </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-sC" />
-                  <label class="form-check-label" for="Nmap-sC">Default Script Scan</label>
-                </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-O" />
-                  <label class="form-check-label" for="Nmap-O">OS detection</label>
-                </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-A" />
-                  <label class="form-check-label" for="Nmap-A">All (OS detection, version detection, script scan and
-                    traceroute)</label>
-                </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-6" />
-                  <label class="form-check-label" for="Nmap-6">IPv6 Scan</label>
-                </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-v" />
-                  <label class="form-check-label" for="Nmap-v">verbosity</label>
-                </div>
-              </div>
-              <!-- Misc end -->
-            </div>
-            <div class="row">
-              <!-- Port Specification -->
-              <div class="col">
-                <h4>Port Specification</h4>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Port" id="Nmap-Full-Port" />
-                  <label class="form-check-label" for="Nmap-Full-Port"> Full Port </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Port" id="Nmap-1000-Port" checked />
-                  <label class="form-check-label" for="Nmap-1000-Port"> Top 1000 Common Port </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Port" id="Nmap-Custom-Port" />
-                  <label class="form-check-label" for="Nmap-Custom-Port"> Custom Port </label>
-                </div>
-                <input class="form-control" id="Port-Number" type="text" />
-                <div class="explanation"> * Multiple port example: 22,80 <br /> * Range example: 1-1000 </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-Exclude-Port" />
-                  <label class="form-check-label" for="Nmap-Exclude-Port">Exclude Port</label>
-                </div>
-                <input class="form-control" id="Exclude-Port-Number" type="text" />
-                <div class="explanation"> * Multiple port example: 22,80 <br /> * Range example: 1-1000 </div>
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role="switch" id="Nmap-Scan-Sequence" />
-                  <label class="form-check-label" for="Nmap-Scan-Sequence">Scan port sequentially</label>
-                </div>
-              </div>
-              <!-- Port Sepcification end -->
-              <!-- Timing and Performance -->
-              <div class="col">
-                <h4>Timing and Performance</h4>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Timing" id="Nmap-T0" checked />
-                  <label class="form-check-label" for="Nmap-T0"> Disable Timing Template </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Timing" id="Nmap-T1" />
-                  <label class="form-check-label" for="Nmap-T1"> 1 </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Timing" id="Nmap-T2" />
-                  <label class="form-check-label" for="Nmap-T2"> 2 </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Timing" id="Nmap-T3" />
-                  <label class="form-check-label" for="Nmap-T3"> 3 </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Timing" id="Nmap-T4" />
-                  <label class="form-check-label" for="Nmap-T4"> 4 (Recommended)</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Timing" id="Nmap-T5" />
-                  <label class="form-check-label" for="Nmap-T5"> 5 </label>
-                </div>
-                <div class="explanation">* Higher number scan faster</div>
-              </div>
-              <!-- Timing and Performance end -->
-              <!-- File Output -->
-              <div class="col">
-                <h4>File Output</h4>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Output" id="Nmap-DOutput" checked />
-                  <label class="form-check-label" for="Nmap-DOutput"> Disable File Output </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Output" id="Nmap-oN" />
-                  <label class="form-check-label" for="Nmap-oN"> Normal Output </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Output" id="Nmap-oX" />
-                  <label class="form-check-label" for="Nmap-oX"> XML Output </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Output" id="Nmap-oS" />
-                  <label class="form-check-label" for="Nmap-oS"> Script Output </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Output" id="Nmap-oG" />
-                  <label class="form-check-label" for="Nmap-oG"> Grepable Output</label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="Nmap-Output" id="Nmap-oA" />
-                  <label class="form-check-label" for="Nmap-oA"> 3 different output in Normal, XML and Grepable
-                    format</label>
-                </div>
-                <input class="form-control" id="Output-Name" type="text" />
-                <div class="explanation">* Output File Name</div>
-              </div>
-              <!-- File Output end -->
+              <!-- Object Clas end -->
             </div>
           </div>
-          <!-- Advance Nmap Command -->
+        
+
+
+
+
+
+  <!-- Custom Query Builder end-->
+
+
+
+
+
+          <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+          <!-- ADSearch Command -->
           <div class="input-group">
-            <span class="input-group-text">Result:</span>
+            <span class="input-group-text">ADSearch :</span>
             <div class="form-floating">
-              <input type="text" class="form-control-plaintext" id="Advance-Nmap" readonly />
-              <label for="Advance-Nmap">Nmap Command</label>
+              <input type="text" class="form-control" id="ADSearch_Command" readonly />
+              <label for="ADSearch_Command">ADSearch Command</label>
+
             </div>
             <div class="comment">
-              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="Advance-Nmap">
+              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="ADSearch_Command">
                 <span class="commenttext">Copy to clipboard</span> Copy text </button>
             </div>
           </div>
+          <!-- ADSearch Command end -->
+
+          <br><br>
+
+          <!-- LDAPSearch Command -->
+          <div class="input-group">
+            <span class="input-group-text">LDAPSearch :</span>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="LDAPSearch_Command" readonly />
+              <label for="LDAPSearch_Command">LDAPSearch Command</label>
+
+            </div>
+            <div class="comment">
+              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="LDAPSearch_Command">
+                <span class="commenttext">Copy to clipboard</span> Copy text </button>
+            </div>
+          </div>
+          <!-- LDAPSearch Command end -->
+
+          <br><br>
+
+          <!-- Raw Command -->
+          <div class="input-group">
+            <span class="input-group-text">Raw LDAP Query :</span>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="RAW_Command" readonly />
+              <label for="RAW_Command">Raw Query</label>
+
+            </div>
+            <div class="comment">
+              <button class="btn btn-outline-secondary light" type="button" id="Copy" data-id="RAW_Command">
+                <span class="commenttext">Copy to clipboard</span> Copy text </button>
+            </div>
+          </div>
+          <!-- Raw Command end -->
+           <br><br>
+
+
           <!-- Advance Nmap Command end -->
         </div>
       </div>
 
       <!-- Advance Mode end -->
       
-    </div>
+    
     <!-- body end -->
     <!-- footer -->
     <div class="btm light">Created by Mohin Paramasivam</div>
