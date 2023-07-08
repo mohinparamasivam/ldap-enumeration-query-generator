@@ -161,6 +161,7 @@
               <!-- Object Class -->
               <div class="col">
                 <h4>Object Class</h4>
+                <br>
                 <div class="form-check form-switch">
                   <input class="form-check-input" type="checkbox" role="switch" id="top" />
                   <label class="form-check-label" for="top">top</label>
@@ -199,6 +200,40 @@
                 </div>
               </div>
               <!-- Object Clas end -->
+            </div>
+
+            <div class="row">
+              <!-- Object Class -->
+              <div class="col">
+                <br><br>
+                <h4>Additional Attributes Count</h4>
+                <br>
+                <div class="plus-minus-box">
+                  <button class="minus-btn">-</button>
+                  <input type="number" class="num" id="num" value="1" readonly>
+                  <button class="plus-btn">+</button>
+                </div>
+              </div>
+
+                <script>
+                  const plus = document.querySelector(".plus-btn");
+                  const minus = document.querySelector(".minus-btn");
+                  const num = document.querySelector(".num");
+                  let a = 1;
+                  plus.addEventListener("click", () => {
+                    if (a < 3) {
+                      a++;
+                      num.value = a;
+                    }
+                  });
+                  minus.addEventListener("click", () => {
+                    if (a > 1) {
+                      a--;
+                      num.value = a;
+                    }
+                  });
+                </script>
+              </div>
             </div>
           </div>
         

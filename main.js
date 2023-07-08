@@ -642,6 +642,20 @@ function SwitchColorMode() {
   }
 }
 
+function increaseNumber() {
+  alert("Hello increase");
+  //var numberInput = document.getElementById("number-input");
+  //var currentValue = parseInt(numberInput.value);
+  //numberInput.value = currentValue + 1;
+}
+
+//function decreaseNumber() {
+  //var numberInput = document.getElementById("number-input");
+  //var currentValue = parseInt(numberInput.value);
+  //if (currentValue > 0) {
+    //numberInput.value = currentValue - 1;
+  //}
+//}
 
 
 
@@ -673,7 +687,6 @@ document.addEventListener("DOMContentLoaded", function () {
   BuiltInQueries();
   NSEDefinition();
   SwitchColorMode();
-
   
   document.getElementById('Switch-Color').addEventListener('click', SwitchColorMode);
 
