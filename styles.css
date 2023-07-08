@@ -175,22 +175,28 @@ html {
 }
 
 .plus-minus-box {
-  display: flex;
   align-items: center;
 }
 
 .minus-btn,
 .plus-btn {
-  padding: 5px 10px;
-  font-weight: bold;
+  padding: 2px 10px;
+  font-weight: normal;
+  border: 1.5px solid black;
   font-size: 16px;
   cursor: pointer;
 }
 
-#number-input {
-  width: 50px;
+#num {
+  width: 150px;
   text-align: center;
 }
+
+.input-container {
+    display: flex;
+    align-items: center;
+    padding-left: 25px; /* Adjust the padding value as needed */
+  }
 
 .form-select {
 

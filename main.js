@@ -642,22 +642,26 @@ function SwitchColorMode() {
   }
 }
 
-function increaseNumber() {
-  alert("Hello increase");
-  //var numberInput = document.getElementById("number-input");
-  //var currentValue = parseInt(numberInput.value);
-  //numberInput.value = currentValue + 1;
+//Function for the Custom Query Builder Page
+//Additional Attributes Count + AND -
+function AttributeCount() {
+  const plus = document.querySelector(".plus-btn");
+  const minus = document.querySelector(".minus-btn");
+  const num = document.querySelector(".num");
+  let a = 1;
+  plus.addEventListener("click", () => {
+    if (a < 3) {
+      a++;
+      num.value = a;
+    }
+  });
+  minus.addEventListener("click", () => {
+    if (a > 1) {
+      a--;
+      num.value = a;
+    }
+  });
 }
-
-//function decreaseNumber() {
-  //var numberInput = document.getElementById("number-input");
-  //var currentValue = parseInt(numberInput.value);
-  //if (currentValue > 0) {
-    //numberInput.value = currentValue - 1;
-  //}
-//}
-
-
 
 // DOM 
 document.addEventListener("DOMContentLoaded", function () {
@@ -685,9 +689,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //onload function
   BuiltInQueries();
+  AttributeCount();
   NSEDefinition();
   SwitchColorMode();
-  
   document.getElementById('Switch-Color').addEventListener('click', SwitchColorMode);
 
 });
