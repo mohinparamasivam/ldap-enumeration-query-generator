@@ -198,6 +198,12 @@ html {
     padding-left: 25px; /* Adjust the padding value as needed */
   }
 
+
+.attribute-column {
+  padding-right: 530px; /* Adjust the padding value as needed */
+}
+
+
 .form-select {
 
   margin-top: 1rem;
