@@ -200,14 +200,26 @@ html {
 
 
 .attribute-column {
-  padding-right: 530px; /* Adjust the padding value as needed */
+  padding-right: 520px; /* Adjust the padding value as needed */
 }
-
 
 .form-select {
 
   margin-top: 1rem;
   margin-bottom: 1rem;
+  
+}
+
+#Attribute1 {
+  width: 180px; /* Adjust the width value as needed */
+}
+
+#Attribute2 {
+  width: 180px; /* Adjust the width value as needed */
+}
+
+#Attribute3 {
+  width: 180px; /* Adjust the width value as needed */
 }
 
 .summary {
