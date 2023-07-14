@@ -222,6 +222,8 @@ html {
 #SearchValue1{
   width: 250px;
   left: 5px;
+  top : 60px;
+  position: absolute;
 
 }
 
@@ -229,6 +231,7 @@ html {
   width: 250px;
   left: 5px;
   top : 130px;
+  position: absolute;
 
 }
 
@@ -236,6 +239,7 @@ html {
   width: 250px;
   left: 5px;
   top : 205px;
+  position: absolute;
 
 }
 
@@ -244,6 +248,13 @@ html {
   justify-content: center;
 }
 
+
+.searchvalue-header{
+  top : 5px;
+  left: 65px;
+  position: absolute;
+
+}
 
 
 #Attribute1,
