@@ -205,11 +205,24 @@ html {
 }
 
 .searchvalue-column {
-  left: 800px;
+  right: 730px;
   position: absolute;
   top: 459px;
 }
 
+
+.condition-column{
+  right: 200px;
+  position: absolute;
+  top: 485px;
+}
+
+.additional-attributes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
 .form-select {
 
@@ -222,7 +235,7 @@ html {
 #SearchValue1{
   width: 250px;
   left: 5px;
-  top : 60px;
+  top : 80px;
   position: absolute;
 
 }
@@ -230,7 +243,7 @@ html {
 #SearchValue2{
   width: 250px;
   left: 5px;
-  top : 130px;
+  top : 155px;
   position: absolute;
 
 }
@@ -238,7 +251,7 @@ html {
 #SearchValue3{
   width: 250px;
   left: 5px;
-  top : 205px;
+  top : 230px;
   position: absolute;
 
 }
@@ -250,7 +263,7 @@ html {
 
 
 .searchvalue-header{
-  top : 5px;
+  top : 25px;
   left: 65px;
   position: absolute;
 
