@@ -201,7 +201,15 @@ html {
 
 .attribute-column {
   padding-right: 520px; /* Adjust the padding value as needed */
+  position: absolute;
 }
+
+.searchvalue-column {
+  left: 800px;
+  position: absolute;
+  top: 459px;
+}
+
 
 .form-select {
 
@@ -210,18 +218,41 @@ html {
   
 }
 
-#Attribute1 {
-  width: 180px; /* Adjust the width value as needed */
+
+#SearchValue1{
+  width: 250px;
+  left: 5px;
+
 }
 
-#Attribute2 {
-  width: 180px; /* Adjust the width value as needed */
+#SearchValue2{
+  width: 250px;
+  left: 5px;
+  top : 130px;
+
 }
 
+#SearchValue3{
+  width: 250px;
+  left: 5px;
+  top : 205px;
+
+}
+
+.center-align {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+#Attribute1,
+#Attribute2,
 #Attribute3 {
   width: 180px; /* Adjust the width value as needed */
 }
 
+ 
 .summary {
   margin-top: .5rem !important;
   margin-bottom: .5rem !important;
