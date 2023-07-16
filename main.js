@@ -642,6 +642,78 @@ function SwitchColorMode() {
   }
 }
 
+
+function disableElements(value) {
+  const attribute1Select = document.getElementById("Attribute1");
+  const attribute2Select = document.getElementById("Attribute2");
+  const attribute3Select = document.getElementById("Attribute3");
+  const searchValue1Input = document.getElementById("SearchValue1");
+  const searchValue2Input = document.getElementById("SearchValue2");
+  const searchValue3Input = document.getElementById("SearchValue3");
+  const condition1Select = document.getElementById("Condition1");
+  const condition2Select = document.getElementById("Condition2");
+  const condition3Select = document.getElementById("Condition3");
+
+
+  if (value === 1) {
+    attribute1Select.disabled = false;
+    searchValue1Input.disabled = false;
+    condition1Select.disabled = false;
+    attribute2Select.disabled = true;
+    searchValue2Input.disabled = true;
+    condition2Select.disabled = true;
+    attribute3Select.disabled = true;
+    searchValue3Input.disabled = true;
+    condition3Select.disabled = true;
+  } 
+
+  else if (value === 2) {
+    attribute1Select.disabled = false;
+    searchValue1Input.disabled = false;
+    condition1Select.disabled = false;
+    attribute2Select.disabled = false;
+    searchValue2Input.disabled = false;
+    condition2Select.disabled = false;
+    attribute3Select.disabled = true;
+    searchValue3Input.disabled = true;
+    condition3Select.disabled = true;
+  } 
+
+  else if (value === 3) {
+    attribute1Select.disabled = false;
+    searchValue1Input.disabled = false;
+    condition1Select.disabled = false;
+    attribute2Select.disabled = false;
+    searchValue2Input.disabled = false;
+    condition2Select.disabled = false;
+    attribute3Select.disabled = false;
+    searchValue3Input.disabled = false;
+    condition3Select.disabled = false;
+    }
+
+  // Apply styles to disabled elements
+  applyDisabledStyles();
+}
+
+function applyDisabledStyles() {
+  const disabledElements = document.querySelectorAll("select:disabled, input:disabled");
+  const enabledElements = document.querySelectorAll("select:not(:disabled), input:not(:disabled)");
+
+  disabledElements.forEach(function (element) {
+    element.style.backgroundColor = "#f5f5f5"; // Change to desired grey color
+    element.style.color = "#777"; // Change to desired text color
+  });
+
+  enabledElements.forEach(function (element) {
+    element.style.backgroundColor = ""; // Reset element background color
+    element.style.color = ""; // Reset element text color
+  });
+}
+
+// Call the function to disable elements and apply styles
+
+
+
 //Function for the Custom Query Builder Page
 //Additional Attributes Count + AND -
 function AttributeCount() {
@@ -649,19 +721,31 @@ function AttributeCount() {
   const minus = document.querySelector(".minus-btn");
   const num = document.querySelector(".num");
   let a = 1;
+  disableElements(a);
+
+  //triggered when plus icon is clicked
   plus.addEventListener("click", () => {
     if (a < 3) {
       a++;
       num.value = a;
+      disableElements(a);
+      
+
+
     }
   });
+
+  //triggered when minus icon is clicked
   minus.addEventListener("click", () => {
     if (a > 1) {
       a--;
       num.value = a;
+      disableElements(a);
     }
   });
 }
+
+
 
 // DOM 
 document.addEventListener("DOMContentLoaded", function () {

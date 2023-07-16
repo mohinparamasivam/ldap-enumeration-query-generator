@@ -272,11 +272,14 @@ html {
 
 #Attribute1,
 #Attribute2,
-#Attribute3 {
+#Attribute3,
+#Condition1,
+#Condition2,
+#Condition3 {
   width: 180px; /* Adjust the width value as needed */
 }
 
- 
+
 .summary {
   margin-top: .5rem !important;
   margin-bottom: .5rem !important;
