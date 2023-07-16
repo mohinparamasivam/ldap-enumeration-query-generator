@@ -44,7 +44,6 @@ function SetLDAP() {
   // PreBuilt-Query Mode
   var PreBuiltMode = document.getElementById("PreBuilt-Mode");
 
-  alert(PreBuiltMode.value);
   //Set the ADSearch , LDAPSearch and Raw LDAP Query Value
 
 
