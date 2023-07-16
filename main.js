@@ -573,7 +573,6 @@ function BuiltInQueries() {
 
   var options = [
     { value: "", text: "Please Select" },
-    { value: "mohin", text: "mohin" },
     { value: "Find all Domain Users", text: "Find all Domain Users" },
     { value: "Find all Domain Admins", text: "Find all Domain Admins" },
     { value: "Find all Domain Groups", text: "Find all Domain Groups" },
