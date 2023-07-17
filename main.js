@@ -610,6 +610,28 @@ function BuiltInQueries() {
 }
 
 
+// to set the category nse option into the form select
+function ConditionOptions() {
+  var options = [
+    { value: "", text: "Please Select" },
+    { value: "AND", text: "AND" },
+    { value: "OR", text: "OR" }
+  ];
+
+  var PreBuiltQuery = document.getElementById("Condition1");
+
+  options.forEach(function (option) {
+    var optionElement = document.createElement("option");
+    optionElement.value = option.value;
+    optionElement.text = option.text;
+    PreBuiltQuery.appendChild(optionElement);
+  });
+
+  PreBuiltQuery.value = ""; // Set the initial selected option to empty value
+  PreBuiltQuery.classList.add("centered-option"); // Add CSS class to center the selected option
+}
+
+
 
 
 function SwitchColorMode() {
@@ -727,6 +749,7 @@ function AttributeCount() {
       a++;
       num.value = a;
       disableElements(a);
+      ConditionOptions();
       
 
 
@@ -772,6 +795,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //onload function
   BuiltInQueries();
   AttributeCount();
+  ConditionOptions();
   NSEDefinition();
   SwitchColorMode();
   document.getElementById('Switch-Color').addEventListener('click', SwitchColorMode);
