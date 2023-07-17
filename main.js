@@ -610,28 +610,95 @@ function BuiltInQueries() {
 }
 
 
-// to set the category nse option into the form select
-function ConditionOptions() {
-  var options = [
+// Populate dropdown option for the condition
+function ConditionOptions(value) {
+  var conditionOptions = [
     { value: "", text: "Please Select" },
     { value: "AND", text: "AND" },
     { value: "OR", text: "OR" }
   ];
 
-  var PreBuiltQuery = document.getElementById("Condition1");
+  if (value === 1) {
+    //clear all the dropdown value before populating
+    var Condition1Option = document.getElementById("Condition1");
+    var Condition2Option = document.getElementById("Condition2");
+    var Condition3Option = document.getElementById("Condition3");
 
-  options.forEach(function (option) {
-    var optionElement = document.createElement("option");
-    optionElement.value = option.value;
-    optionElement.text = option.text;
-    PreBuiltQuery.appendChild(optionElement);
-  });
+    populateDropdownOptions(Condition1Option, [],true);
+    populateDropdownOptions(Condition2Option, [],true);
+    populateDropdownOptions(Condition3Option, [],true);
 
-  PreBuiltQuery.value = ""; // Set the initial selected option to empty value
-  PreBuiltQuery.classList.add("centered-option"); // Add CSS class to center the selected option
+    //Populate with the dropdown options
+    populateDropdownOptions(Condition1Option, conditionOptions);
+
+
+    Condition1Option.value = ""; // Set the initial selected option to empty value
+    Condition1Option.classList.add("centered-option"); // Add CSS class to center the selected option
+  } 
+
+  else if (value === 2) {
+
+    var Condition1Option = document.getElementById("Condition1");
+    var Condition2Option = document.getElementById("Condition2");
+    var Condition3Option = document.getElementById("Condition3");
+
+    populateDropdownOptions(Condition1Option, [],true);
+    populateDropdownOptions(Condition2Option, [],true);
+    populateDropdownOptions(Condition3Option, [],true);
+
+    //Populate with the dropdown options
+    populateDropdownOptions(Condition1Option, conditionOptions);
+    populateDropdownOptions(Condition2Option, conditionOptions);
+    
+
+    Condition1Option.value = ""; // Set the initial selected option to empty value
+    Condition2Option.value = "";
+    Condition1Option.classList.add("centered-option"); // Add CSS class to center the selected option
+    Condition2Option.classList.add("centered-option"); // Add CSS class to center the selected option
+  } 
+
+  else if (value === 3) {
+    
+    var Condition1Option = document.getElementById("Condition1");
+    var Condition2Option = document.getElementById("Condition2");
+    var Condition3Option = document.getElementById("Condition3");
+
+    populateDropdownOptions(Condition1Option, [],true);
+    populateDropdownOptions(Condition2Option, [],true);
+    populateDropdownOptions(Condition3Option, [],true);
+
+    //Populate with the dropdown options
+    populateDropdownOptions(Condition1Option, conditionOptions);
+    populateDropdownOptions(Condition2Option, conditionOptions);
+    populateDropdownOptions(Condition3Option, conditionOptions);
+
+    Condition1Option.value = ""; // Set the initial selected option to empty value
+    Condition2Option.value = "";
+    Condition3Option.value = "";
+    Condition1Option.classList.add("centered-option"); // Add CSS class to center the selected option
+    Condition2Option.classList.add("centered-option"); // Add CSS class to center the selected option
+    Condition3Option.classList.add("centered-option"); // Add CSS class to center the selected option
+  }
 }
 
+// Call the function with the desired value to populate and center the dropdowns
 
+
+
+function populateDropdownOptions(selectElement, options, clearOptions = false) {
+  if (clearOptions) {
+    // Clear existing options
+    selectElement.innerHTML = "";
+  }
+
+  // Create new options
+  options.forEach(function (option) {
+    const optionElement = document.createElement("option");
+    optionElement.value = option.value;
+    optionElement.textContent = option.text;
+    selectElement.appendChild(optionElement);
+  });
+}
 
 
 function SwitchColorMode() {
@@ -664,6 +731,7 @@ function SwitchColorMode() {
 
 
 function disableElements(value) {
+
   const attribute1Select = document.getElementById("Attribute1");
   const attribute2Select = document.getElementById("Attribute2");
   const attribute3Select = document.getElementById("Attribute3");
@@ -749,7 +817,7 @@ function AttributeCount() {
       a++;
       num.value = a;
       disableElements(a);
-      ConditionOptions();
+      ConditionOptions(a);
       
 
 
@@ -762,6 +830,7 @@ function AttributeCount() {
       a--;
       num.value = a;
       disableElements(a);
+      ConditionOptions(a);
     }
   });
 }
@@ -795,7 +864,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //onload function
   BuiltInQueries();
   AttributeCount();
-  ConditionOptions();
+  ConditionOptions(1);
   NSEDefinition();
   SwitchColorMode();
   document.getElementById('Switch-Color').addEventListener('click', SwitchColorMode);
