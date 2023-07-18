@@ -596,13 +596,7 @@ function BuiltInQueries() {
 
   var PreBuiltQuery = document.getElementById("PreBuilt-Mode");
 
-  options.forEach(function (option) {
-    var optionElement = document.createElement("option");
-    optionElement.value = option.value;
-    optionElement.text = option.text;
-    PreBuiltQuery.appendChild(optionElement);
-  });
-
+  populateDropdownOptions(PreBuiltQuery, options);
   PreBuiltQuery.value = "Please Select";
 
   PreBuiltQuery.addEventListener("change", SetLDAP);
@@ -681,9 +675,76 @@ function ConditionOptions(value) {
   }
 }
 
+
+// Populate dropdown option for the Attributes in Custom Query Builder Page
+
+function AttributesCustomPage() {
+
+// Get the checkboxes and the select elements
+const objectClassCheckboxes = document.querySelectorAll("#Custom .form-check-input");
+const attributeSelects = document.querySelectorAll("#Custom .attribute-column select");
+
+// Define the attribute options for each object class
+const attributeOptions = {
+  top: ["Attribute1", "Attribute2", "Attribute3"],
+  container: ["Attribute4", "Attribute5", "Attribute6"],
+  organizationalUnit: ["Attribute7", "Attribute8", "Attribute9"],
+  domain: ["Attribute10", "Attribute11", "Attribute12"],
+  computer: ["Attribute13", "Attribute14", "Attribute15"],
+  person: ["Attribute16", "Attribute17", "Attribute18"],
+  organizationalPerson: ["Attribute19", "Attribute20", "Attribute21"],
+  user: ["Attribute22", "Attribute23", "Attribute24"],
+  group: ["Attribute25", "Attribute26", "Attribute27"],
+};
+
+// Function to update the attribute options based on the selected object classes
+function updateAttributeOptions() {
+  // Reset the attribute options
+  attributeSelects.forEach((select) => {
+    select.innerHTML = "<option value=''>Please Select</option>";
+  });
+
+  // Get the selected object classes
+  const selectedObjectClasses = Array.from(objectClassCheckboxes)
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.id);
+
+  // Add disabled options as group headers
+  selectedObjectClasses.forEach((objectClass) => {
+    const groupHeader = document.createElement("option");
+    groupHeader.value = "";
+    groupHeader.textContent = objectClass;
+    groupHeader.disabled = true;
+
+    attributeSelects.forEach((select) => {
+      select.appendChild(groupHeader.cloneNode(true));
+    });
+
+    // Add attributes to the select elements
+    attributeOptions[objectClass].forEach((attribute) => {
+      attributeSelects.forEach((select) => {
+        const option = document.createElement("option");
+        option.value = attribute;
+        option.textContent = attribute;
+        select.appendChild(option);
+      });
+    });
+  });
+}
+
+// Add event listener to the checkboxes
+objectClassCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("change", updateAttributeOptions);
+});
+
+}
+
+
+
+
+
+
 // Call the function with the desired value to populate and center the dropdowns
-
-
 
 function populateDropdownOptions(selectElement, options, clearOptions = false) {
   if (clearOptions) {
@@ -865,6 +926,7 @@ document.addEventListener("DOMContentLoaded", function () {
   BuiltInQueries();
   AttributeCount();
   ConditionOptions(1);
+  AttributesCustomPage();
   NSEDefinition();
   SwitchColorMode();
   document.getElementById('Switch-Color').addEventListener('click', SwitchColorMode);
