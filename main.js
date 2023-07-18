@@ -686,15 +686,15 @@ const attributeSelects = document.querySelectorAll("#Custom .attribute-column se
 
 // Define the attribute options for each object class
 const attributeOptions = {
-  top: ["Attribute1", "Attribute2", "Attribute3"],
-  container: ["Attribute4", "Attribute5", "Attribute6"],
-  organizationalUnit: ["Attribute7", "Attribute8", "Attribute9"],
-  domain: ["Attribute10", "Attribute11", "Attribute12"],
-  computer: ["Attribute13", "Attribute14", "Attribute15"],
-  person: ["Attribute16", "Attribute17", "Attribute18"],
-  organizationalPerson: ["Attribute19", "Attribute20", "Attribute21"],
-  user: ["Attribute22", "Attribute23", "Attribute24"],
-  group: ["Attribute25", "Attribute26", "Attribute27"],
+  top: ["cn", "description"],
+  container: ["cn", "description"],
+  organizationalUnit: ["cn", "description", "ou"],
+  domain: ["cn", "description", "dc"],
+  computer: ["cn", "description", "sAMAccountName","userPrincipalName","operatingSystem","operatingSystemVersion"],
+  person: ["cn", "description", "givenName","sn","displayName","userPrincipalName","telephoneNumber","mail"],
+  organizationalPerson: ["cn", "description", "givenName","sn","displayName","userPrincipalName","telephoneNumber","mail"],
+  user: ["cn", "description", "givenName","sn","displayName","userPrincipalName","telephoneNumber","mail"],
+  group: ["cn", "description", "groupType","member"],
 };
 
 // Function to update the attribute options based on the selected object classes
