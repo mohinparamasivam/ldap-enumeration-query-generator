@@ -691,15 +691,10 @@ const attributeSelects = document.querySelectorAll("#Custom .attribute-column se
 
 // Define the attribute options for each object class
 const attributeOptions = {
-  top: ["cn", "description"],
-  container: ["cn", "description"],
-  organizationalUnit: ["cn", "description", "ou"],
-  domain: ["cn", "description", "dc"],
-  computer: ["cn", "description", "sAMAccountName","userPrincipalName","operatingSystem","operatingSystemVersion"],
-  person: ["cn", "description", "givenName","sn","displayName","userPrincipalName","telephoneNumber","mail"],
-  organizationalPerson: ["cn", "description", "givenName","sn","displayName","userPrincipalName","telephoneNumber","mail"],
   user: ["cn", "description", "givenName","sn","displayName","userPrincipalName","telephoneNumber","mail"],
+  computer: ["cn", "description", "sAMAccountName","userPrincipalName","operatingSystem","operatingSystemVersion"],
   group: ["cn", "description", "groupType","member"],
+  organizationalUnit: ["cn", "description", "ou"]
 };
 
 // Function to update the attribute options based on the selected object classes
