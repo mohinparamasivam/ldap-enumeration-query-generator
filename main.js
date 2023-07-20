@@ -622,8 +622,11 @@ function ConditionOptions(value) {
     populateDropdownOptions(Condition2Option, [],true);
     populateDropdownOptions(Condition3Option, [],true);
 
+
     //Populate with the dropdown options
     populateDropdownOptions(Condition1Option, conditionOptions);
+    populateDropdownOptions(Condition2Option, conditionOptions);
+    populateDropdownOptions(Condition3Option, conditionOptions);
 
 
     Condition1Option.value = ""; // Set the initial selected option to empty value
@@ -643,6 +646,7 @@ function ConditionOptions(value) {
     //Populate with the dropdown options
     populateDropdownOptions(Condition1Option, conditionOptions);
     populateDropdownOptions(Condition2Option, conditionOptions);
+    populateDropdownOptions(Condition3Option, conditionOptions);
     
 
     Condition1Option.value = ""; // Set the initial selected option to empty value
@@ -674,6 +678,7 @@ function ConditionOptions(value) {
     Condition3Option.classList.add("centered-option"); // Add CSS class to center the selected option
   }
 }
+
 
 
 // Populate dropdown option for the Attributes in Custom Query Builder Page
@@ -925,7 +930,13 @@ document.addEventListener("DOMContentLoaded", function () {
   //onload function
   BuiltInQueries();
   AttributeCount();
-  ConditionOptions(1);
+  document.querySelectorAll(".form-check-input").forEach(function (checkbox) {
+  checkbox.addEventListener("change", function() {
+    if (this.checked) {
+      ConditionOptions(3);
+    }
+  });
+});
   AttributesCustomPage();
   NSEDefinition();
   SwitchColorMode();
