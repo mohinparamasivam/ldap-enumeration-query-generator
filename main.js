@@ -618,7 +618,7 @@ function ConditionOptions(value) {
     var Condition2Option = document.getElementById("Condition2");
     var Condition3Option = document.getElementById("Condition3");
 
-    //populateDropdownOptions(Condition1Option, [],true);
+    populateDropdownOptions(Condition1Option, [],true);
     //populateDropdownOptions(Condition2Option, [],true);
     //populateDropdownOptions(Condition3Option, [],true);
 
@@ -980,10 +980,12 @@ else if (Condition3!=="") {
   document.querySelectorAll(".form-check-input").forEach(function (checkbox) {
   checkbox.addEventListener("change", function() {
     if (this.checked) {
-      ConditionOptions(3);
+      ConditionOptions(1);
     }
   });
 });
+
+
   AttributesCustomPage();
   NSEDefinition();
   SwitchColorMode();
