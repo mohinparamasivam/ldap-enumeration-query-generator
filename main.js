@@ -693,7 +693,7 @@ const attributeSelects = document.querySelectorAll("#Custom .attribute-column se
 const attributeOptions = {
   user: ["name", "givenName", "sn","sAMAccountName","description","countryCode","objectSid","memberOf","servicePrincipalName","badPwdCount","logonCount","adminCount","userAccountControl","isCriticalSystemObject"],
   computer: ["name", "sAMAccountName", "dNSHostName","countryCode","objectGUID","objectSid","operatingSystem","badPwdCount","isCriticalSystemObject"],
-  group: ["cn", "description", "groupType","member"],
+  group: ["sAMAccountName", "description", "objectGUID","objectSid","member","memberOf","adminCount","isCriticalSystemObject"],
   organizationalUnit: ["cn", "description", "ou"]
 };
 
