@@ -692,7 +692,7 @@ const attributeSelects = document.querySelectorAll("#Custom .attribute-column se
 // Define the attribute options for each object class
 const attributeOptions = {
   user: ["name", "givenName", "sn","sAMAccountName","description","countryCode","objectSid","memberOf","servicePrincipalName","badPwdCount","logonCount","adminCount","userAccountControl","isCriticalSystemObject"],
-  computer: ["cn", "description", "sAMAccountName","userPrincipalName","operatingSystem","operatingSystemVersion"],
+  computer: ["name", "sAMAccountName", "dNSHostName","countryCode","objectGUID","objectSid","operatingSystem","badPwdCount","isCriticalSystemObject"],
   group: ["cn", "description", "groupType","member"],
   organizationalUnit: ["cn", "description", "ou"]
 };
