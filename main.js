@@ -608,8 +608,9 @@ function BuiltInQueries() {
 function ConditionOptions(value) {
   var conditionOptions = [
     { value: "", text: "Please Select" },
-    { value: "AND", text: "AND" },
-    { value: "OR", text: "OR" }
+    { value: "&", text: "AND" },
+    { value: "|", text: "OR" },
+    { value: "!", text: "NOT" }
   ];
 
   if (value === 1) {
@@ -694,7 +695,6 @@ const attributeOptions = {
   user: ["name", "givenName", "sn","sAMAccountName","description","countryCode","objectSid","memberOf","servicePrincipalName","badPwdCount","logonCount","adminCount","userAccountControl","isCriticalSystemObject"],
   computer: ["name", "sAMAccountName", "dNSHostName","countryCode","objectGUID","objectSid","operatingSystem","badPwdCount","isCriticalSystemObject"],
   group: ["sAMAccountName", "description", "objectGUID","objectSid","member","memberOf","adminCount","isCriticalSystemObject"],
-  organizationalUnit: ["cn", "description", "ou"]
 };
 
 // Function to update the attribute options based on the selected object classes
