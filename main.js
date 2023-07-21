@@ -609,7 +609,7 @@ function ConditionOptions(value) {
     { value: "&", text: "AND" },
     { value: "|", text: "OR" },
     { value: "!", text: "NOT" },
-    { value: "DONE", text: "NONE"}
+    { value: "=", text: "EQUALS"}
   ];
 
   if (value === 1) {
@@ -686,7 +686,7 @@ function ConditionOptions(value) {
 function AttributesCustomPage() {
 
 // Get the checkboxes and the select elements
-const objectClassCheckboxes = document.querySelectorAll("#Custom .form-check-input");
+const objectCategoryCheckboxes = document.querySelectorAll("#Custom .form-check-input");
 const attributeSelects = document.querySelectorAll("#Custom .attribute-column select");
 
 // Define the attribute options for each object class
@@ -704,15 +704,15 @@ function updateAttributeOptions() {
   });
 
   // Get the selected object classes
-  const selectedObjectClasses = Array.from(objectClassCheckboxes)
+  const selectedObjectCategories = Array.from(objectCategoryCheckboxes)
     .filter((checkbox) => checkbox.checked)
     .map((checkbox) => checkbox.id);
 
   // Add disabled options as group headers
-  selectedObjectClasses.forEach((objectClass) => {
+  selectedObjectCategories.forEach((objectCategory) => {
     const groupHeader = document.createElement("option");
     groupHeader.value = "";
-    groupHeader.textContent = objectClass;
+    groupHeader.textContent = objectCategory;
     groupHeader.disabled = true;
 
     attributeSelects.forEach((select) => {
@@ -720,7 +720,7 @@ function updateAttributeOptions() {
     });
 
     // Add attributes to the select elements
-    attributeOptions[objectClass].forEach((attribute) => {
+    attributeOptions[objectCategory].forEach((attribute) => {
       attributeSelects.forEach((select) => {
         const option = document.createElement("option");
         option.value = attribute;
@@ -732,7 +732,7 @@ function updateAttributeOptions() {
 }
 
 // Add event listener to the checkboxes
-objectClassCheckboxes.forEach((checkbox) => {
+objectCategoryCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("change", updateAttributeOptions);
 });
 
@@ -898,19 +898,43 @@ function AttributeCount() {
 
 
 
-function CustomQueryBuilderCommand(conditioncount) {
+function CustomBuilderConditionTrigger(attributeSelect) {
+  document.getElementById("Condition1").addEventListener("change", function() {
 
-  if (conditioncount===1) {
-    alert(1);
-  }
+    var attribute1 = document.getElementById("Attribute1").value;
+    var searchvalue1 = document.getElementById("SearchValue1").value;
+    var condition1 = document.getElementById("Condition1").value;
+    var objectCategory_Value;
 
-  else if (conditioncount===2) {
+    const objectCategoryCheckboxes = document.querySelectorAll("#Custom .form-check-input");
+    const selectedObjectCategory = Array.from(objectCategoryCheckboxes)
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.id);
+    objectCategory_Value=selectedObjectCategory[0];
+    alert(objectCategory_Value);
+
+    //MOHIN EDIT HERE ON
+  });
+
+  document.getElementById("Condition2").addEventListener("change", function() {
     alert(2);
-  }
+  });
 
-  else if (conditioncount===3) {
+  document.getElementById("Condition3").addEventListener("change", function() {
     alert(3);
-  }
+  });
+}
+
+
+
+ //var additionalattributecount = document.getElementById("num").value;
+
+ //if (additionalattributecount===1) {
+
+ //}
+
+
+
   /*
   const condition1 = document.getElementById("Condition1").value;
   const condition2 = document.getElementById("Condition2").value;
@@ -923,8 +947,23 @@ function CustomQueryBuilderCommand(conditioncount) {
   adSearchInput.focus();
 
   */
+//}
+
+
+function disableOtherCheckboxes(selectedCheckbox) {
+  document.querySelectorAll(".form-check-input").forEach(function(checkbox) {
+    if (checkbox !== selectedCheckbox) {
+      checkbox.disabled = true;
+    }
+  });
 }
 
+
+function enableAllCheckboxes() {
+  document.querySelectorAll(".form-check-input").forEach(function(checkbox) {
+    checkbox.disabled = false;
+  });
+}
 
 // DOM 
 document.addEventListener("DOMContentLoaded", function () {
@@ -947,22 +986,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //Event Listener for Condition1 DropDown
 
-var Condition1 = document.getElementById("Condition1").value;
-var Attribute1 = document.getElementById("Condition2").value;
-var SearchValue1 = document.getElementById("Condition3").value;
-
-if (Condition1!=="") {
-  document.getElementById("Condition1").addEventListener("change", CustomQueryBuilderCommand(1));
-}
-
-else if (Condition2!=="") {
-  document.getElementById("Condition2").addEventListener("change", CustomQueryBuilderCommand(2));
-}
-
-else if (Condition3!=="") {
-  document.getElementById("Condition3").addEventListener("change", CustomQueryBuilderCommand(3));
-}
-
 
 
 
@@ -977,16 +1000,20 @@ else if (Condition3!=="") {
   //onload function
   BuiltInQueries();
   AttributeCount();
-  document.querySelectorAll(".form-check-input").forEach(function (checkbox) {
+  document.querySelectorAll(".form-check-input").forEach(function(checkbox) {
   checkbox.addEventListener("change", function() {
     if (this.checked) {
+      disableOtherCheckboxes(this);
       ConditionOptions(1);
+    } else {
+      enableAllCheckboxes();
     }
   });
 });
 
 
   AttributesCustomPage();
+  CustomBuilderConditionTrigger();
   NSEDefinition();
   SwitchColorMode();
   document.getElementById('Switch-Color').addEventListener('click', SwitchColorMode);
