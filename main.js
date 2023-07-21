@@ -691,7 +691,7 @@ const attributeSelects = document.querySelectorAll("#Custom .attribute-column se
 
 // Define the attribute options for each object class
 const attributeOptions = {
-  user: ["cn", "description", "givenName","sn","displayName","userPrincipalName","telephoneNumber","mail"],
+  user: ["name", "givenName", "sn","sAMAccountName","description","countryCode","objectSid","memberOf","servicePrincipalName","badPwdCount","logonCount","adminCount","userAccountControl","isCriticalSystemObject"],
   computer: ["cn", "description", "sAMAccountName","userPrincipalName","operatingSystem","operatingSystemVersion"],
   group: ["cn", "description", "groupType","member"],
   organizationalUnit: ["cn", "description", "ou"]
@@ -902,7 +902,7 @@ function AttributeCount() {
 document.addEventListener("DOMContentLoaded", function () {
 
   // set a default LDAP IP address and set nmap command 
-  document.getElementById("LDAP_IP").value = "10.10.10.10";
+  //document.getElementById("LDAP_IP").value = "10.10.10.10";
   var input = document.getElementById("LDAP_IP");
   input.addEventListener("input", SetLDAP);
 
