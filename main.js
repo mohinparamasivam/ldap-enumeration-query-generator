@@ -491,11 +491,9 @@ function SetLDAP() {
       document.getElementById("RAW_Command").value = RAW_Command;
     }
   }
+
 }
 
-
-
-//MOHIN EDIT HERE 
 
 
 // Copy button and the feedback
@@ -610,7 +608,8 @@ function ConditionOptions(value) {
     { value: "", text: "Please Select" },
     { value: "&", text: "AND" },
     { value: "|", text: "OR" },
-    { value: "!", text: "NOT" }
+    { value: "!", text: "NOT" },
+    { value: "DONE", text: "NONE"}
   ];
 
   if (value === 1) {
@@ -619,9 +618,9 @@ function ConditionOptions(value) {
     var Condition2Option = document.getElementById("Condition2");
     var Condition3Option = document.getElementById("Condition3");
 
-    populateDropdownOptions(Condition1Option, [],true);
-    populateDropdownOptions(Condition2Option, [],true);
-    populateDropdownOptions(Condition3Option, [],true);
+    //populateDropdownOptions(Condition1Option, [],true);
+    //populateDropdownOptions(Condition2Option, [],true);
+    //populateDropdownOptions(Condition3Option, [],true);
 
 
     //Populate with the dropdown options
@@ -640,17 +639,17 @@ function ConditionOptions(value) {
     var Condition2Option = document.getElementById("Condition2");
     var Condition3Option = document.getElementById("Condition3");
 
-    populateDropdownOptions(Condition1Option, [],true);
+    //populateDropdownOptions(Condition1Option, [],true);
     populateDropdownOptions(Condition2Option, [],true);
     populateDropdownOptions(Condition3Option, [],true);
 
     //Populate with the dropdown options
-    populateDropdownOptions(Condition1Option, conditionOptions);
+    //populateDropdownOptions(Condition1Option, conditionOptions);
     populateDropdownOptions(Condition2Option, conditionOptions);
     populateDropdownOptions(Condition3Option, conditionOptions);
     
 
-    Condition1Option.value = ""; // Set the initial selected option to empty value
+    //Condition1Option.value = ""; // Set the initial selected option to empty value
     Condition2Option.value = "";
     Condition1Option.classList.add("centered-option"); // Add CSS class to center the selected option
     Condition2Option.classList.add("centered-option"); // Add CSS class to center the selected option
@@ -662,8 +661,8 @@ function ConditionOptions(value) {
     var Condition2Option = document.getElementById("Condition2");
     var Condition3Option = document.getElementById("Condition3");
 
-    populateDropdownOptions(Condition1Option, [],true);
-    populateDropdownOptions(Condition2Option, [],true);
+    //populateDropdownOptions(Condition1Option, [],true);
+    //populateDropdownOptions(Condition2Option, [],true);
     populateDropdownOptions(Condition3Option, [],true);
 
     //Populate with the dropdown options
@@ -671,8 +670,8 @@ function ConditionOptions(value) {
     populateDropdownOptions(Condition2Option, conditionOptions);
     populateDropdownOptions(Condition3Option, conditionOptions);
 
-    Condition1Option.value = ""; // Set the initial selected option to empty value
-    Condition2Option.value = "";
+    //Condition1Option.value = ""; // Set the initial selected option to empty value
+    //Condition2Option.value = "";
     Condition3Option.value = "";
     Condition1Option.classList.add("centered-option"); // Add CSS class to center the selected option
     Condition2Option.classList.add("centered-option"); // Add CSS class to center the selected option
@@ -760,6 +759,7 @@ function populateDropdownOptions(selectElement, options, clearOptions = false) {
     selectElement.appendChild(optionElement);
   });
 }
+
 
 
 function SwitchColorMode() {
@@ -898,6 +898,34 @@ function AttributeCount() {
 
 
 
+function CustomQueryBuilderCommand(conditioncount) {
+
+  if (conditioncount===1) {
+    alert(1);
+  }
+
+  else if (conditioncount===2) {
+    alert(2);
+  }
+
+  else if (conditioncount===3) {
+    alert(3);
+  }
+  /*
+  const condition1 = document.getElementById("Condition1").value;
+  const condition2 = document.getElementById("Condition2").value;
+  const condition3 = document.getElementById("Condition3").value;
+
+  const adSearchCommand = 'ADSearch.exe --domain your_domain --search "${condition1}${condition2}${condition3}"';
+  const adSearchInput = document.getElementById("ADSearch_Command_Custom");
+  adSearchInput.value = adSearchCommand;
+  alert(adSearchCommand);
+  adSearchInput.focus();
+
+  */
+}
+
+
 // DOM 
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -914,6 +942,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Default Opening the first tab
   document.getElementById("PreBuiltOpen").click();
+
+
+
+//Event Listener for Condition1 DropDown
+
+var Condition1 = document.getElementById("Condition1").value;
+var Attribute1 = document.getElementById("Condition2").value;
+var SearchValue1 = document.getElementById("Condition3").value;
+
+if (Condition1!=="") {
+  document.getElementById("Condition1").addEventListener("change", CustomQueryBuilderCommand(1));
+}
+
+else if (Condition2!=="") {
+  document.getElementById("Condition2").addEventListener("change", CustomQueryBuilderCommand(2));
+}
+
+else if (Condition3!=="") {
+  document.getElementById("Condition3").addEventListener("change", CustomQueryBuilderCommand(3));
+}
+
+
+
+
 
   // to add onmouseleave and onclick into all copy button
   var cpbtns = document.querySelectorAll("button[id^='Copy']");
