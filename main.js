@@ -1,4 +1,4 @@
-// To change the tabs for Simple, Advance and NSE mode
+// To change the tabs for PreBuilt Queries, Custom Queries
 function ChangeTab(evt, customTab) {
   var i, tabcontent, tablinks;
 
@@ -513,50 +513,8 @@ function ResetToClip(event) {
   comment.innerHTML = "Copy to Clipboard";
 }
 
-//Disable and enable input
-function DisableEnableInput() {
 
-  // Port Number input
-  if (document.getElementById("Nmap-Custom-Port").checked) {
-    document.getElementById("Port-Number").disabled = false;
-  } else {
-    document.getElementById("Port-Number").value = "";
-    document.getElementById("Port-Number").disabled = true;
-  }
-
-  // Exclude Port Number input
-  if (document.getElementById("Nmap-Exclude-Port").checked) {
-    document.getElementById("Exclude-Port-Number").disabled = false;
-  } else {
-    document.getElementById("Exclude-Port-Number").value = "";
-    document.getElementById("Exclude-Port-Number").disabled = true;
-  }
-
-  // Output Name input
-  if (document.getElementById("Nmap-DOutput").checked) {
-    document.getElementById("Output-Name").disabled = true;
-    document.getElementById("Output-Name").value = "";
-  } else {
-    document.getElementById("Output-Name").disabled = false;
-  }
-
-  // Specific NSE Form select
-  if (document.getElementById("NSE-Category").value === "specific") {
-    document.getElementById("NSE-Specific").disabled = false;
-  } else {
-    document.getElementById("NSE-Specific").disabled = true;
-    document.getElementById("NSE-Specific").value = "";
-  }
-  // NSE Port input
-  if (document.getElementById("NSE-Port").checked) {
-    document.getElementById("NSE-Port-Number").disabled = false;
-  } else {
-    document.getElementById("NSE-Port-Number").value = "";
-    document.getElementById("NSE-Port-Number").disabled = true;
-  }
-}
-
-// to set the category nse option into the form select
+// Set Built In Queries in dropdown
 function BuiltInQueries() {
 
   var domain = document.getElementById("Domain").value; 
@@ -739,10 +697,6 @@ objectCategoryCheckboxes.forEach((checkbox) => {
 }
 
 
-
-
-
-
 // Call the function with the desired value to populate and center the dropdowns
 
 function populateDropdownOptions(selectElement, options, clearOptions = false) {
@@ -759,7 +713,6 @@ function populateDropdownOptions(selectElement, options, clearOptions = false) {
     selectElement.appendChild(optionElement);
   });
 }
-
 
 
 function SwitchColorMode() {
@@ -1691,70 +1644,11 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       }
     }
 
-    //END of Condition 2 Trigger Update Value
-
+    //END of Condition 3 Trigger Update Value
 
   }
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   });
 }
-
-
-
- //var additionalattributecount = document.getElementById("num").value;
-
- //if (additionalattributecount===1) {
-
- //}
-
-
-
-  /*
-  const condition1 = document.getElementById("Condition1").value;
-  const condition2 = document.getElementById("Condition2").value;
-  const condition3 = document.getElementById("Condition3").value;
-
-  const adSearchCommand = 'ADSearch.exe --domain your_domain --search "${condition1}${condition2}${condition3}"';
-  const adSearchInput = document.getElementById("ADSearch_Command_Custom");
-  adSearchInput.value = adSearchCommand;
-  alert(adSearchCommand);
-  adSearchInput.focus();
-
-  */
-//}
-
 
 function disableOtherCheckboxes(selectedCheckbox) {
   document.querySelectorAll(".form-check-input").forEach(function(checkbox) {
@@ -1820,7 +1714,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   AttributesCustomPage();
   CustomBuilderConditionTrigger();
-  NSEDefinition();
   SwitchColorMode();
   document.getElementById('Switch-Color').addEventListener('click', SwitchColorMode);
 
