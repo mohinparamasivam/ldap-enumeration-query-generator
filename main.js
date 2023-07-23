@@ -278,7 +278,7 @@ function SetLDAP() {
     if (PreBuiltMode.value === "Find all Domain Users") {
       ldap_query = "(&(objectCategory=user)(objectClass=user))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -287,9 +287,9 @@ function SetLDAP() {
     }
 
     else if (PreBuiltMode.value === "Find all Domain Admins") {
-      ldap_query = "(&(objectClass=user)(objectCategory=person)(memberOf=CN=Domain Admins,CN=Users,DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"))";
+      ldap_query = "(&(objectClass=user)(objectCategory=person)(memberOf=CN=Domain Admins,CN=Users,DC="+domain_part1+",DC="+domain_part2+"))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -301,7 +301,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find all Domain Groups") {
       ldap_query = "(&(objectClass=group)(objectCategory=group))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -314,7 +314,7 @@ function SetLDAP() {
       ldap_query_adsearch = "(&(objectClass=group)(objectCategory=group)(name=*admin))";
       ldap_query_ldapsearch = "(&(objectClass=group)(cn=*admin))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query_ldapsearch+"\"";
       var RAW_Command = ldap_query_adsearch;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -326,7 +326,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Domain Users with password never expires enabled") {
       ldap_query = "(&(objectClass=user)(objectCategory=person)(userAccountControl:1.2.840.113556.1.4.803:=65536))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -338,7 +338,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Domain Controllers") {
       ldap_query = "(&(objectClass=computer)(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=8192))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -350,7 +350,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Domain Computers") {
       ldap_query = "(&(objectClass=computer)(objectCategory=computer))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -362,7 +362,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Decoy HoneyPot Accounts") {
       ldap_query = "(&(objectClass=user)(objectCategory=person)(logonCount=0)(badPwdCount=0))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -374,7 +374,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Default User Accounts with password in Description") {
       ldap_query = "(&(objectClass=user)(objectCategory=person)(description=*password*))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -386,7 +386,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Map Domain Trusts") {
       ldap_query = "(&(objectClass=trustedDomain)(objectCategory=trustedDomain))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -398,7 +398,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Principals with DCSync Rights") {
       ldap_query = "(&(objectClass=user)(objectCategory=person)(msDS-AllowedToActOnBehalfOfOtherIdentity=*))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -410,7 +410,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "List all Kerberoastable Accounts") {
       ldap_query = "(&(objectCategory=user)(servicePrincipalName=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -422,7 +422,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find AS-REP Roastable Accounts (DontReqPreAuth)") {
       ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -434,7 +434,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find UnConstrained Delegation Enabled Workstations") {
       ldap_query = "(&(objectCategory=user)(userAccountControl:1.2.840.113556.1.4.803:=4194304)(userAccountControl:1.2.840.113556.1.4.803:=524288))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -446,7 +446,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Constrained Delegation Enabled Workstations") {
       ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=524288)";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -459,7 +459,7 @@ function SetLDAP() {
       ldap_query_adsearch = "(&(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$)))";
       ldap_query_ldapsearch = "(|(ActiveDirectoryRights=GenericAll)(ActiveDirectoryRights=Write)(ActiveDirectoryRights=Create)(ActiveDirectoryRights=Delete)(ActiveDirectoryRights=ExtendedRight))(&(AceQualifier=Allow)(SecurityIdentifier=^S-1-5-.*-[1-9]\\d{3,}$))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query_adsearch+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query_ldapsearch+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query_ldapsearch+"\"";
       var RAW_Command = ldap_query_adsearch;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -471,7 +471,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find Workstations where Domain Users can RDP") {
       ldap_query = "(&(objectCategory=computer)(userAccountControl:1.2.840.113556.1.4.803:=4096))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -483,7 +483,7 @@ function SetLDAP() {
     else if (PreBuiltMode.value === "Find LAPS Enabled Workstations") {
       ldap_query = "(&(objectCategory=computer)(ms-Mcs-AdmPwdExpirationTime=*))";
       var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+      var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
       var RAW_Command = ldap_query;
 
       document.getElementById("ADSearch_Command").value = ADSearch_Command;
@@ -980,7 +980,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       if (condition==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+"))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -992,7 +992,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+"="+searchvalue1+"))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1127,7 +1127,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       if (condition1==="!" && condition2==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"("+attribute2+"="+searchvalue2+"))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1139,7 +1139,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+"="+searchvalue1+")"+"("+attribute2+"="+searchvalue2+"))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1151,7 +1151,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="!" && condition2==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+"))";        
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1163,7 +1163,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+"))";        
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1175,7 +1175,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"("+attribute2+"="+searchvalue2+")))";        
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1187,7 +1187,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+")))";        
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1471,22 +1471,13 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       }
 
 
-
-
-
-
-
-
-
-
-      
     }
 
     else if (domain_array.length===2){
       if (condition1==="!" && condition2==="!" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+"))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1498,7 +1489,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="!" && condition2==="&" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"(&("+attribute2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1510,7 +1501,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="!" && condition2==="|" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"(|("+attribute2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1522,7 +1513,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="!" && condition2==="&" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"(&("+attribute2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1534,7 +1525,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="!" && condition2==="|" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"(|("+attribute2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1546,7 +1537,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="!" && condition2==="!" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"("+attribute1+condition1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+"))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1558,7 +1549,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="!" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1570,7 +1561,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="&" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"(&("+attribute2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1582,7 +1573,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="|" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"(|("+attribute2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1594,7 +1585,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="!" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1606,7 +1597,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="|" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"(|("+attribute2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1618,7 +1609,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="|" && condition2==="&" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(|("+attribute1+"="+searchvalue1+")"+"(&("+attribute2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1630,7 +1621,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="!" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(&("+attribute1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1642,7 +1633,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="&" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(&("+attribute1+"="+searchvalue1+")"+"(&("+attribute2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1654,7 +1645,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="|" && condition3==="END") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(&("+attribute1+"="+searchvalue1+")"+"(|("+attribute2+"="+searchvalue2+")"+"("+attribute3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1666,7 +1657,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="!" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(&("+attribute1+"="+searchvalue1+")"+"("+attribute2+condition2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1678,7 +1669,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="|" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(&("+attribute1+"="+searchvalue1+")"+"(|("+attribute2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1690,7 +1681,7 @@ function CustomBuilderConditionTrigger(attributeSelect) {
       else if (condition1==="&" && condition2==="&" && condition3==="!") {
         ldap_query = "(&(objectCategory="+objectCategory_Value+")"+"(&("+attribute1+"="+searchvalue1+")"+"(&("+attribute2+"="+searchvalue2+")"+"("+attribute3+condition3+"="+searchvalue3+")))";
         var ADSearch_Command = "ADSearch.exe --domain " +domain+" --search \""+ldap_query+"\"";
-        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+",DC="+domain_part3+"\" "+"\""+ldap_query+"\"";
+        var LDAPSearch_Command  = "ldapsearch -x -h " +ip+" -p "+port+" -b \""+"DC="+domain_part1+",DC="+domain_part2+"\" "+"\""+ldap_query+"\"";
         var RAW_Command = ldap_query;
 
 
@@ -1699,6 +1690,8 @@ function CustomBuilderConditionTrigger(attributeSelect) {
         document.getElementById("RAW_Command_Custom").value = RAW_Command;
       }
     }
+
+    //END of Condition 2 Trigger Update Value
 
 
   }
