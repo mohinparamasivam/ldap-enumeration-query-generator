@@ -13,7 +13,8 @@
 
 
 [data-theme="dark"] {
-  --primary-color: #9A97F3;
+  --primary-color: #b3b3ff; /* Your primary color */
+  --primary-font-color: #A597F3; /* Suggested font color for dark mode */
   --secondary-color: #818cab;
   --explanation-color: #e1e1ff;
   --bg-color: #161625;
@@ -22,7 +23,7 @@
   --tab-btn-color: #aaa;
   --tab-btn-hover-color: #bbb;
   --github-cat-bg: #fff; 
-  --github-cat-color:#151513;
+  --github-cat-color: #151513;
 }
 
 
@@ -289,9 +290,10 @@ html {
   fill: var(--github-cat-bg);
   color: var(--github-cat-color);
   position: absolute;
-  top: 0;
+  top: 40px;
+  left: 0; /* Adjust the left position as needed */
   border: 0;
-  right: 0;
+  transform: translateY(-50%) rotate(270deg); /* Rotate the rectangle 180 degrees */
 }
 
 #Light-Bulb {
@@ -300,49 +302,27 @@ html {
   position: absolute;
   top: 0;
   border: 0;
-  left: 0;
+  right: 0;
 }
 
 #Switch-Color {
   background-color: var(--github-cat-bg);
   color: var(--github-cat-color);
   position: absolute;
-  top: 10;
+  top: 30px;
   border: 0;
-  left: 0;
+  right: 0;
   font-size: 20px;
 }
 
-
-.github-corner:hover .octo-arm {
-  animation: octocat-wave 560ms ease-in-out
+.github-corner {
+  position: absolute;
+  top: 5%;
+  left: 10px;
+  transform: translateY(-50%);
+  z-index: 999;
 }
 
-@keyframes octocat-wave {
 
-  0%,
-  100% {
-    transform: rotate(0)
-  }
 
-  20%,
-  60% {
-    transform: rotate(-25deg)
-  }
-
-  40%,
-  80% {
-    transform: rotate(10deg)
-  }
-}
-
-@media (max-width:500px) {
-  .github-corner:hover .octo-arm {
-    animation: none
-  }
-
-  .github-corner .octo-arm {
-    animation: octocat-wave 560ms ease-in-out
-  }
-}
 
